@@ -1,0 +1,10 @@
+name: waOSReport
+main: com.github.lyokofirelyte.waOSReport.waOSReport
+version: 1
+
+commands:
+   report:
+      description: Reports a player.
+      usage: /report [player] [reason]
+      permission: waosreport.report
+      permission-message: Sadly you don't have permission for this.
