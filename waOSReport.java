@@ -17,18 +17,18 @@ import org.bukkit.entity.Player;
 public class waOSReport extends JavaPlugin {
 
 
-  
+	
 	Connection c = null;
 	
 	Logger log = Logger.getLogger("Minecraft");
 
-	private int port;
 
     public void onEnable(){ 
 	log.info("Enabled waOS Reporting!");
+	getCommand("report").setExecutor(new Commands());
 	
 
-	MySQL MySQL = new MySQL("hostname", port, "database", "user", "password");
+	MySQL MySQL = new MySQL("localhost", 3306, "WA2", "root", "_O13piKm");
 	c = MySQL.open();
 }
  
@@ -47,28 +47,25 @@ public class waOSReport extends JavaPlugin {
 
                  
                     if(!(args.length == 0)){
-                        if(args[0].equalsIgnoreCase("report")){
-                            MySQL MySQL = new MySQL("hostname", port, "database", "user", "password");
+                            MySQL MySQL = new MySQL("localhost", 3306, "WA2", "root", "_O13piKm");
                             c = MySQL.open();
                             Statement statement = c.createStatement();
                             ResultSet res = statement.executeQuery("SELECT * FROM users WHERE minecraft = '" + pName + "';");
                             res.next();
                          
                             if(res.getString("minecraft") == null){
-                                String UserName = args[1];
-                                String Report = args[2];
+                                String UserName = args[0];
+                                String Report = args[1];
                               
                              
                                 statement.executeUpdate("INSERT INTO users ('minecraft', 'username', 'report') VALUES('" + pName + "', '" + UserName + "', '" + Report + "');");
-                                //player.sendMessage("[ waOS ] Your report has been received! " + UserName + " Report: " + Report);
+                                player.sendMessage("[ waOS ] Your report has been received! " + UserName + " Report: " + Report);
                             }else{
                                 player.sendMessage("[ waOS ] Something went wrong! Contact a System Administrator!");
                             }
                         }else{
                             player.sendMessage("[ waOS ] Something went wrong! Contact a System Administrator!");
-                        }
-                    }else{
-                        player.sendMessage("[ waOS ] Something went wrong! Contact a System Administrator!");
+
                     }
                             } catch (SQLException e) {
                                 // TODO Auto-generated catch block
