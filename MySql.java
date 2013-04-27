@@ -8,8 +8,8 @@ import java.sql.SQLException;
 public class MySQL extends Database 
 { 
     String user = "root"; 
-    String database = "WA2"; 
-    String password = "_O13piKm"; 
+    String database = "----"; 
+    String password = "----"; 
     int port = 3306;
     String hostname = "localhost"; 
     Connection c = null; 
