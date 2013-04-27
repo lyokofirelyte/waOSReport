@@ -28,7 +28,7 @@ public class waOSReport extends JavaPlugin {
 	getCommand("report").setExecutor(new Commands());
 	
 
-	MySQL MySQL = new MySQL("localhost", 3306, "WA2", "root", "_O13piKm");
+	MySQL MySQL = new MySQL("localhost", 3306, "----", "root", "----");
 	c = MySQL.open();
 }
  
